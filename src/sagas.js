@@ -22,7 +22,7 @@ function* randomizeCube() {
     }
     const direction = Boolean(Math.round(Math.random()));
     yield put(actionCreators.spinSlice(slice, direction));
-    const result = yield race({
+    yield race({
       nextSpin: take(COMMIT_SPIN),
       timeout: call(delay, 200)
     });
@@ -37,7 +37,6 @@ function* watchRandomize() {
 }
 
 export default function*() {
-  console.log('Running saga');
   yield [
     fork(watchRandomize)
   ];

@@ -1,7 +1,7 @@
 import spinSlice from './util/spinSlice';
 import { SPIN_SLICE, ROTATE_CUBE, COMMIT_ROTATE, COMMIT_SPIN, RANDOMIZE,
          END_RANDOMIZE } from './actions';
-import { combineReducers, compose } from 'redux';
+import { combineReducers } from 'redux';
 
 const PUZZLE_SIZE = 3;
 
@@ -73,7 +73,8 @@ const isRandomizing = (state = false, action = {}) => {
   }
 }
 
-
+// More complex reducers to commit actions
+// These reducers happen as the result of transitionend events, not user input
 const reduceCommitRotate = ({rotationQueue, sideColors}) => {
 
   const spinSlices = (colorState, slices, forward) => {
