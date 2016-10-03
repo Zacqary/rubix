@@ -1,0 +1,25 @@
+{
+  "name": "rubix",
+  "version": "0.1.0",
+  "devDependencies": {
+    "eslint": "^3.7.0",
+    "eslint-plugin-react": "^6.3.0",
+    "react-scripts": "0.6.1"
+  },
+  "dependencies": {
+    "babel-eslint": "^7.0.0",
+    "babel-polyfill": "^6.16.0",
+    "document-register-element": "^1.2.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0",
+    "redux-saga": "^0.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

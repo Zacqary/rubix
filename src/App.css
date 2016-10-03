@@ -1,0 +1,211 @@
+.App {
+  text-align: center;
+  width: 1400px;
+  perspective: 2000px;
+}
+
+.App * {
+  transform-style: preserve-3d;
+}
+
+@keyframes SpinningSlice-forward-z {
+  from { transform: rotateZ(0deg); }
+  to { transform: rotateZ(90deg); }
+}
+@keyframes SpinningSlice-backward-z {
+  from { transform: rotateZ(0deg); }
+  to { transform: rotateZ(-90deg); }
+}
+@keyframes SpinningSlice-forward-x {
+  from { transform: rotateX(0deg); }
+  to { transform: rotateX(90deg); }
+}
+@keyframes SpinningSlice-backward-x {
+  from { transform: rotateX(0deg); }
+  to { transform: rotateX(-90deg); }
+}
+@keyframes SpinningSlice-forward-y {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(90deg); }
+}
+@keyframes SpinningSlice-backward-y {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(-90deg); }
+}
+
+
+.Puzzle-wrapper {
+  transform: rotateY(45deg) rotateX(-30deg) translate3d(16px,40px,-20px);
+  pointer-events: none;
+}
+
+.Puzzle {
+  width: 300px;
+  height: 300px;
+  transform-origin: 33% 33%;
+}
+
+.Cube {
+   flex: 0 0 auto;
+   width: 100px;
+   height: 100px;
+   perspective-origin: 150% 150%;
+   transform-style: preserve-3d;
+   background: transparent;
+   backface-visibility: hidden;
+}
+.Cube-face {
+   display: block;
+   position: absolute;
+   width: 100px;
+   height: 100px;
+   border: none;
+   line-height: 100px;
+   font-family: sans-serif;
+   font-size: 60px;
+   color: white;
+   text-align: center;
+   outline: 1px solid black;
+   background: #444;
+   backface-visibility: hidden;
+}
+.front {
+   transform: translateZ(50px);
+}
+.back {
+   color: black;
+   transform: rotateY(180deg) translateZ(50px);
+}
+.right {
+   transform: rotateY(90deg) translateZ(50px);
+}
+.left {
+   transform: rotateY(-90deg) translateZ(50px);
+}
+.top {
+   transform: rotateX(90deg) translateZ(50px);
+}
+.bottom {
+   transform: rotateX(-90deg) translateZ(50px);
+}
+.Cube-face.inner-face {
+  visibility: hidden;
+}
+.SpinningSlice .Cube-face.inner-face,
+.InnerSlice .Cube-face.inner-face {
+  visibility: visible;
+}
+
+
+.Controls {
+  position: absolute;
+  top: 0;
+}
+.Controls.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.Arrow {
+  cursor: pointer;
+  margin: 25px 0;
+  opacity: 0.25;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.Arrow:hover {
+  opacity: 1;
+}
+
+.ArrowGroup {
+  width: 300px;
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ArrowGroup-inner {
+  display: flex;
+  width: 100px;
+  flex-flow: row wrap;
+}
+
+.y-forward {
+  transform: translate3d(450px, -74px, 200px) rotateY(45deg) rotateX(-30deg);
+}
+.y-forward .Arrow:hover {
+  transform: translateX(10px) scaleX(1.2);
+}
+
+.z-forward {
+  transform: translate3d(425px, -280px, 0px) rotateY(45deg) rotateX(60deg);
+}
+.z-forward .Arrow {
+  transform: rotateX(-30deg);
+}
+.z-forward .Arrow:hover {
+  transform: translateX(10px) scaleX(1.2) rotateX(-30deg);
+}
+
+.x-forward {
+  transform: translate3d(300px, 30px, 0px) rotateY(90deg) rotateZ(90deg) rotateX(-45deg);
+}
+.x-forward .Arrow {
+  transform: rotateX(-65deg) scaleX(0.8);
+}
+.x-forward .Arrow:hover {
+  transform: translateX(10px) scaleX(1) rotateX(-65deg);
+}
+
+
+.z-backward {
+  transform: translate3d(90px, -10px, 0px) rotateY(90deg) rotateZ(150deg) rotateX(-20deg)
+}
+.z-backward .Arrow {
+  transform: rotateX(-50deg) scaleX(0.8);
+}
+.z-backward .Arrow:hover {
+  transform: translateX(10px) scaleX(1) rotateX(-50deg);
+}
+
+.y-backward {
+  transform: translate3d(80px, -200px, 0px) rotateY(-45deg) rotateZ(210deg) rotateX(0deg)
+}
+.y-backward .Arrow {
+  transform: rotateX(-30deg);
+}
+.y-backward .Arrow:hover {
+  transform: translateX(10px) scaleX(1.2) rotateX(-30deg);
+}
+
+.x-backward {
+  transform: translate3d(220px, -280px, 0px) rotateZ(-90deg);
+}
+.x-backward .Arrow {
+  transform: rotateZ(-20deg) scaleX(0.5);
+}
+.x-backward .Arrow:hover {
+  transform: scaleX(0.7) rotateZ(-20deg) ;
+}
+
+.RotateArrows g {
+  opacity: 0.25;
+  cursor: pointer;
+}
+.RotateArrows g:hover {
+  opacity: 1;
+}
+
+.ShuffleButton {
+  transform: rotate(10deg);
+}
+.ShuffleButton-target {
+  opacity: 0.25;
+  cursor: pointer;
+}
+.ShuffleButton-target:hover {
+  opacity: 1;
+}
