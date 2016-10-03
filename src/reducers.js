@@ -3,8 +3,9 @@ import { SPIN_SLICE, ROTATE_CUBE, COMMIT_ROTATE, COMMIT_SPIN, RANDOMIZE,
          END_RANDOMIZE } from './actions';
 import { combineReducers } from 'redux';
 
-const PUZZLE_SIZE = 3;
 
+// Initial state of what colors are on each side of the cube
+const PUZZLE_SIZE = 3;
 const buildSolidSide = (num) => {
   const row = [];
   const side = [];
@@ -16,7 +17,6 @@ const buildSolidSide = (num) => {
   }
   return side;
 };
-
 const initialSideColors = {
   front: buildSolidSide(0),
   left: buildSolidSide(1),
@@ -27,8 +27,13 @@ const initialSideColors = {
 };
 
 // Base Reducers
+
+// sideColors - The positions of each color on the sides of the cube
 const sideColors = (state = initialSideColors) => state;
 
+// rotation - The rotation animation to apply to the cube
+// (Rotating the cube plays the rotate animation, then applies the change to
+// sideColors and resets the rotation state)
 const reduceRotation = (state, {axis, direction}) =>
   direction ? state[axis] + 90 : state[axis] - 90;
 
@@ -42,6 +47,10 @@ const rotation = (state = initialRotation, action = {}) => {
   }
 };
 
+// rotationQueue - A queue of cube rotations
+// This ensures the correct sequence of rotations gets applied if the user
+// rotates the cube more than once before the transitionend event fires to
+// commit the changes to sideColors
 const rotationQueue = (state = [], action = {}) => {
   switch (action.type) {
     case ROTATE_CUBE:
@@ -51,6 +60,8 @@ const rotationQueue = (state = [], action = {}) => {
   }
 };
 
+// spinQueue - A queued up action to perform a spin animation
+// This is similar to rotationQueue, but only supports one spin at a time
 const spinQueue = (state = null, action = {}) => {
   switch (action.type) {
     case SPIN_SLICE:
@@ -62,6 +73,7 @@ const spinQueue = (state = null, action = {}) => {
   }
 };
 
+// isRandomizing - True when the cube is playing its randomization animation
 const isRandomizing = (state = false, action = {}) => {
   switch (action.type) {
     case RANDOMIZE:
@@ -73,16 +85,27 @@ const isRandomizing = (state = false, action = {}) => {
   }
 };
 
+// By default, run simple reducers on each property
+const reduceDefault = combineReducers({
+  sideColors, rotation, rotationQueue, spinQueue, isRandomizing
+});
+
+// ==========
 // More complex reducers to commit actions
 // These reducers happen as the result of transitionend events, not user input
+
+// Reduce a cube rotation into multiple spinSlice calls
 const reduceCommitRotate = ({rotationQueue, sideColors}) => {
 
+  // Helper function to spin all three slices on an axis at once
   const spinSlices = (colorState, slices, forward) => {
     let state = colorState;
     slices.forEach(s => state = spinSlice(state, s, forward));
     return state;
   };
 
+  // Go through each rotation action in the rotationQueue, and apply it to
+  // the sideColors through a spinSlices call
   let newSideColors = sideColors;
   rotationQueue.forEach(({axis, direction}) => {
     const forward = axis === 'x' ? !direction : direction;
@@ -94,6 +117,7 @@ const reduceCommitRotate = ({rotationQueue, sideColors}) => {
     newSideColors = spinSlices(newSideColors, slices, forward);
   });
 
+  // Return the new side colors, and reset the rotation states
   return {
     rotation: initialRotation,
     sideColors: newSideColors,
@@ -101,6 +125,7 @@ const reduceCommitRotate = ({rotationQueue, sideColors}) => {
   };
 };
 
+// Reduce a spin action to sideColors
 const reduceCommitSpin = ({sideColors, spinQueue}) => {
   return {
     sideColors: spinSlice(sideColors, spinQueue.slice, spinQueue.direction),
@@ -108,10 +133,8 @@ const reduceCommitSpin = ({sideColors, spinQueue}) => {
   };
 };
 
-const reduceDefault = combineReducers({
-  sideColors, rotation, rotationQueue, spinQueue, isRandomizing
-});
-
+// ==========
+// Main Reducer
 export default (state = {}, action = {}) => {
   switch (action.type) {
     case COMMIT_ROTATE:
