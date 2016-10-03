@@ -4,7 +4,7 @@ const getFace = (sideColors, sideName, row, col) => {
   } else {
     return sideColors[sideName][row][col];
   }
-}
+};
 
 export default ({type, dir, depth}, sideColors) => {
   const getCornerSides = () => {
@@ -40,7 +40,7 @@ export default ({type, dir, depth}, sideColors) => {
       const [row, col] = sidePositions[idx];
       return getFace(sideColors, sideName, row, col);
     });
-  }
+  };
   const getEdgeSides = () => {
     let sides;
     switch (depth) {
@@ -60,7 +60,7 @@ export default ({type, dir, depth}, sideColors) => {
       right: [[1, 2], [1, depth]],
       top: [[0, 1], [2 - depth, 1]],
       bottom: [[2, 1], [2 - depth, 1]]
-    }
+    };
     const sidePositions = edgePositionMap[dir];
     if (depth === 1) sidePositions.shift();
 
@@ -68,11 +68,11 @@ export default ({type, dir, depth}, sideColors) => {
       const [row, col] = sidePositions[idx];
       return getFace(sideColors, sideName, row, col);
     });
-  }
+  };
   const getCenterSide = () => {
     if (depth === 0) return [getFace(sideColors, 'front', 1, 1)];
     else return [getFace(sideColors, 'back', 1, 1)];
-  }
+  };
 
   switch (type) {
     case 'corner':

@@ -38,4 +38,4 @@ export default ({sideColors, rotation, spinQueue, isRandomizing, actions}) => {
     </div>
 
   );
-}
+};

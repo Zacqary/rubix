@@ -15,7 +15,7 @@ const buildSolidSide = (num) => {
     side.push([...row]);
   }
   return side;
-}
+};
 
 const initialSideColors = {
   front: buildSolidSide(0),
@@ -71,7 +71,7 @@ const isRandomizing = (state = false, action = {}) => {
     default:
       return state;
   }
-}
+};
 
 // More complex reducers to commit actions
 // These reducers happen as the result of transitionend events, not user input
@@ -92,7 +92,7 @@ const reduceCommitRotate = ({rotationQueue, sideColors}) => {
       : axis === 'y' ? [6,7,8]
       : [];
     newSideColors = spinSlices(newSideColors, slices, forward);
-  })
+  });
 
   return {
     rotation: initialRotation,
@@ -106,7 +106,7 @@ const reduceCommitSpin = ({sideColors, spinQueue}) => {
     sideColors: spinSlice(sideColors, spinQueue.slice, spinQueue.direction),
     spinQueue: null
   };
-}
+};
 
 const reduceDefault = combineReducers({
   sideColors, rotation, rotationQueue, spinQueue, isRandomizing
@@ -117,8 +117,8 @@ export default (state = {}, action = {}) => {
     case COMMIT_ROTATE:
       return {...state, ...reduceCommitRotate(state)};
     case COMMIT_SPIN:
-      return {...state, ...reduceCommitSpin(state)}
+      return {...state, ...reduceCommitSpin(state)};
     default:
       return reduceDefault(state, action);
   }
-}
+};

@@ -8,4 +8,4 @@ export default (spinSlice) => ({slice, forward, style}) => (
                                     31.329,15.215'
     />
   </svg>
-)
+);

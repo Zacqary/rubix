@@ -3,7 +3,7 @@ import React from 'react';
 const CUBE_SIZE_PX = 100;
 const CUBE_COLORS = [
   '#39c', '#927fb9', '#edbe01', '#dedede', '#e55447', '#73bf4c'
-]
+];
 
 export default ({type, dir, depth, colors}) => {
   const innerFaceKeys = ['front', 'left', 'right', 'top'];
@@ -12,14 +12,14 @@ export default ({type, dir, depth, colors}) => {
   if (depth === 0) {
     children.push(<div className='Cube-face front' key='front'/>);
   } else if (depth === 2) {
-    children.push(<div className='Cube-face back' key='back'/>)
+    children.push(<div className='Cube-face back' key='back'/>);
   }
 
   if (type === 'edge') {
-    children.push(<div className={`Cube-face ${dir}`} key={dir}/>)
+    children.push(<div className={`Cube-face ${dir}`} key={dir}/>);
   } else if (type === 'corner') {
-    children.push(<div className={`Cube-face ${dir.x}`} key={dir.x}/>)
-    children.push(<div className={`Cube-face ${dir.y}`} key={dir.y}/>)
+    children.push(<div className={`Cube-face ${dir.x}`} key={dir.x}/>);
+    children.push(<div className={`Cube-face ${dir.y}`} key={dir.y}/>);
   }
 
   const usedKeys = children.map(c => c.key);
