@@ -1,6 +1,8 @@
 # Rubix - A Rubik's Cube with Redux
 ![Screenshot of Rubix](screenshot.png)
 
+[Live Demo](https://zacqary.github.io/rubix)
+
 This Rubik's cube uses React as a view, Redux and Saga as controllers, and is rendered entirely with CSS3 transforms.
 
 **Works best in Chrome; some CSS animations have clipping issues in Firefox**
