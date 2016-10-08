@@ -3,6 +3,8 @@
 
 This Rubik's cube uses React as a view, Redux and Saga as controllers, and is rendered entirely with CSS3 transforms.
 
+**Works best in Chrome; some CSS animations have clipping issues in Firefox**
+
 ## Running
 First:
 ```
