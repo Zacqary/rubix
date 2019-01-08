@@ -20,7 +20,7 @@ const SpinningSlice = ({children, actions, axis, animDirection}) => {
           height: '300px',
           width: '300px',
           transformOrigin: '33% 33% -2px',
-          animation: `SpinningSlice-${animDirection}-${axis} 0.125s`
+          animation: `SpinningSlice-${animDirection}-${axis} 0.2s`
         }} onAnimationEnd={actions.commitSpin}>
           {children}
         </section>
