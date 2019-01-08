@@ -99,7 +99,7 @@ export default (sideColors, sliceNumber, forward = true) => {
     const transform = transforms[i];
     if (!isColumnTransform) {
       const shouldReverse =
-        forward && sideName === 'top' || !forward && sideName === 'bottom';
+        (forward && sideName === 'top') || (!forward && sideName === 'bottom');
       const newRow =
           prevTransformType === 'column' && shouldReverse ? [...transform].reverse()
         : transform;
