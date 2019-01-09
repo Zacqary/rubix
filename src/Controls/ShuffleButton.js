@@ -3,7 +3,7 @@ export default ({onClick}) => (
   <svg className='ShuffleButton'
        viewBox='0 0 182.426 184.25' width='182.426px' height='184.25px'>
     <g className='ShuffleButton-target'  onClick={onClick}>
-      <path fill='#C5D2EC' stroke='#4B60A4' stroke-width='10' stroke-miterlimit='10' d='M159.55,180.083
+      <path fill='#C5D2EC' stroke='#4B60A4' strokeWidth='10' strokeMiterlimit='10' d='M159.55,180.083
       c-4.687,4.687-12.284,4.687-16.971,0L3.515,41.019c-4.687-4.687-4.686-12.284,0-16.971L21.587,5.976
       c4.686-4.686,12.285-4.687,16.971,0L177.622,145.04c4.687,4.687,4.687,12.284,0,16.971L159.55,180.083z'/>
       <path fill='#4B60A4' d='M45.378,28.369c-0.274,0.085-0.501,0.036-0.681-0.143c-0.138-0.138-0.217-0.412-0.238-0.824

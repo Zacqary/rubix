@@ -71,7 +71,7 @@ export default (sideColors, sliceNumber, forward = true) => {
   const newSideColors = JSON.parse(JSON.stringify(sideColors));
   const sliceDef = sliceMap[sliceNumber];
   // Look up initial positions of the rotating rows/cols
-  const transforms = sliceDef.map(operation => {
+  const transforms = sliceDef.forEach(operation => {
     const [sideName, row, column] = operation;
     if (row !== null) {
         return sideColors[sideName][row];
@@ -99,7 +99,7 @@ export default (sideColors, sliceNumber, forward = true) => {
     const transform = transforms[i];
     if (!isColumnTransform) {
       const shouldReverse =
-        forward && sideName === 'top' || !forward && sideName === 'bottom';
+        (forward && sideName === 'top') || (!forward && sideName === 'bottom');
       const newRow =
           prevTransformType === 'column' && shouldReverse ? [...transform].reverse()
         : transform;

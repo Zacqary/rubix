@@ -41,7 +41,7 @@ export default ({type, dir, depth, colors}) => {
           case 'right':
             return 2;
           default:
-            throw 'Invalid edge x position';
+            throw new Error('Invalid edge x position');
         }
       case 'corner':
         switch (dir.x) {
@@ -50,7 +50,7 @@ export default ({type, dir, depth, colors}) => {
           case 'right':
             return 2;
           default:
-            throw 'Invalid corner x position';
+            throw new Error('Invalid corner x position');
         }
       default:
         return 1;
@@ -68,7 +68,7 @@ export default ({type, dir, depth, colors}) => {
           case 'right':
             return 1;
           default:
-            throw 'Invalid edge y position';
+            throw new Error('Invalid edge y position');
         }
       case 'corner':
         switch (dir.y) {
@@ -77,7 +77,7 @@ export default ({type, dir, depth, colors}) => {
           case 'bottom':
             return 2;
           default:
-            throw 'Invalid corner y position';
+            throw new Error('Invalid corner y position');
         }
       default:
         return 1;
