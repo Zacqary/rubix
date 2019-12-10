@@ -1,4 +1,6 @@
 # Rubix - A Rubik's Cube with Redux
+[![run on repl.it](http://repl.it/badge/github/Zacqary/rubix)](https://repl.it/github/Zacqary/rubix)
+
 ![Screenshot of Rubix](screenshot.png)
 
 [Live Demo](https://zacqary.github.io/rubix)
